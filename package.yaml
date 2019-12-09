@@ -1,0 +1,48 @@
+name:                ShaarliHasFun
+version:             0.0.1.0
+github:              "mro/ShaarliHasFun"
+license:             GPL3
+author:              "0x4c.de"
+maintainer:          "ShaarliHasFun@0x4c.de"
+copyright:           "2019 Marcus Rohrmoser"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            🌺 Pure functional successor of the minimalist sebsauvage-shaarli, now in Haskell. λλ=
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         🌺 Pure functional successor of the minimalist sebsauvage-shaarli, now in Haskell. λλ=
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+executables:
+  ShaarliHasFun.cgi:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - ShaarliHasFun
+
+tests:
+  ShaarliHasFun-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - ShaarliHasFun
