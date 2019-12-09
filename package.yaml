@@ -1,7 +1,7 @@
 name:                ShaarliHasFun
 version:             0.0.1.0
 github:              "mro/ShaarliHasFun"
-license:             GPL3
+license:             GPL-3
 author:              "0x4c.de"
 maintainer:          "ShaarliHasFun@0x4c.de"
 copyright:           "2019 Marcus Rohrmoser"
@@ -31,8 +31,14 @@ executables:
     source-dirs:         app
     ghc-options:
     - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
+    # - -rtsopts
+    # - -with-rtsopts=-N
+    # https://github.com/commercialhaskell/stack/issues/3420#issuecomment-481980763
+    # evtl. later https://github.com/NixOS/nixpkgs/issues/43795
+    - -static
+    - -O2
+    cc-options: -static
+    ld-options: -static -pthread
     dependencies:
     - ShaarliHasFun
 
