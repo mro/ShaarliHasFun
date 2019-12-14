@@ -1,0 +1,4 @@
+(test 
+  (name test_angstrom) 
+  (libraries Lib alcotest)
+)
