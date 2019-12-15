@@ -1,4 +1,9 @@
 (library
   (name Lib)
-  (libraries syndic yaml safepass mmap angstrom httpaf)
+  (libraries
+    syndic
+    yaml
+    safepass
+    angstrom
+  )
 )
