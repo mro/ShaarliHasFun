@@ -1,3 +1,7 @@
+#
+# https://github.com/ocaml/dune/tree/master/example/sample-projects/hello_world
+# via https://stackoverflow.com/a/54712669
+#
 .PHONY: all build clean test install uninstall doc examples
 
 build:

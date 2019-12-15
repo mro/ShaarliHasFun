@@ -1,4 +1,4 @@
 (library
   (name Lib)
-  (libraries syndic yaml angstrom) ; scrypt not available on macos
+  (libraries syndic yaml safepass mmap angstrom httpaf)
 )
