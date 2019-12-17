@@ -1,5 +1,5 @@
 (test 
   ; http://cumulus.github.io/Syndic/syndic/Syndic__/Syndic_atom/
-  (name test_angstrom) 
+  (name simple_test) 
   (libraries Lib alcotest)
 )
