@@ -32,6 +32,10 @@ let hello () =
 <head><title>Hello, Worλd</title></head>
 <body>
 <h1>OCaml, where art thou 🐫!</h1>
+<p>";
+  let cwd = Sys.getcwd () in
+    w cwd;
+  w "</p>
 <ul>";
   va "HOME";
   va "HTTPS";
