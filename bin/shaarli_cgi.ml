@@ -27,6 +27,10 @@
 
 open Lib
 
+(*
+ * If we're running as a cgi: say hello.
+ *)
 let () =
-  Hello.say ();;
+  (* Cgi.hello ();; *)
+  Shell.hello ();;
 

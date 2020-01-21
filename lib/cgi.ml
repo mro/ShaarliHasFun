@@ -25,7 +25,7 @@ let va n =
   print_string "</li>";
   print_string "\n"
 
-let say () =
+let hello () =
   w "Content-type: text/html; charset=utf-8";
   w "";
   w "<html>
