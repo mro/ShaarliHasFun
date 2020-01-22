@@ -1,4 +1,6 @@
 
+let http_request_method = "REQUEST_METHOD"
+
 (* https://github.com/rixed/ocaml-cgi/blob/master/cgi.ml#L169 *)
 let getenv_safe ?default s =
   try
@@ -44,7 +46,7 @@ let run () =
   va "HTTP_ACCEPT";
   va "REMOTE_ADDR";
   va "REMOTE_USER";
-  va "REQUEST_METHOD";
+  va http_request_method;
   va "REQUEST_URI";
   va "PATH_INFO";
   va "QUERY_STRING";
