@@ -1,6 +1,6 @@
 
 (* https://github.com/rixed/ocaml-cgi/blob/master/cgi.ml#L169 *)
-let safe_getenv ?default s =
+let getenv_safe ?default s =
   try
     Sys.getenv s
   with Not_found ->
@@ -19,13 +19,13 @@ let va n =
   print_string "<li>";
   print_string n;
   print_string ": ";
-  let v = safe_getenv ~default:"-" n in
+  let v = getenv_safe ~default:"-" n in
     (* TODO: escape *)
     print_string v;
   print_string "</li>";
   print_string "\n"
 
-let hello () =
+let run () =
   w "Content-type: text/html; charset=utf-8";
   w "";
   w "<html>
@@ -54,5 +54,5 @@ let hello () =
   w "</ul>
 </body>
 </html>";
-  exit 0;;
+  0
 

@@ -27,11 +27,9 @@
 
 open Lib
 
-(*
- * If we're running as a cgi: say hello.
- *)
 let () =
-  (* Cgi.hello ();; *)
-  let status = Shell.run() in
+  let status = match Sys.getenv_opt "REQUEST_METHOD" with
+      Some _ -> Cgi.run()
+    | None   -> Shell.run() in
   exit status;;
 
