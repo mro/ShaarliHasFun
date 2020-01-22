@@ -31,6 +31,7 @@ open Lib
  * If we're running as a cgi: say hello.
  *)
 let () =
-  Cgi.hello ();; 
-  (* Shell.hello ();; *)
+  (* Cgi.hello ();; *)
+  let status = Shell.run() in
+  exit status;;
 
