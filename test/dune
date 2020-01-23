@@ -1,5 +1,4 @@
-(test 
-  ; http://cumulus.github.io/Syndic/syndic/Syndic__/Syndic_atom/
-  (name simple_test) 
-  (libraries Lib alcotest)
-)
+; http://cumulus.github.io/Syndic/syndic/Syndic__/Syndic_atom/
+(tests
+ (names banal_test simple_test angstrom_test)
+ (libraries Lib alcotest))

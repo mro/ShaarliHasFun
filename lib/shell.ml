@@ -23,9 +23,9 @@ type myfe =
 
 let load_or_create_feed_file f =
   match Sys.file_exists f with
-    false -> Error [f; "No such file or directory"]
-    (* http://cumulus.github.io/Syndic/syndic/Syndic__/Syndic_atom/index.html#val-read *)
-  | true  -> Feed (Syndic.Atom.read f)
+    | false -> Error [f; "No such file or directory"]
+      (* http://cumulus.github.io/Syndic/syndic/Syndic__/Syndic_atom/index.html#val-read *)
+    | true  -> Feed (Syndic.Atom.read f)
 
   (* load *)
   (* if fails
@@ -33,32 +33,34 @@ let load_or_create_feed_file f =
 
 let run_argc0 exe =
   let name = String.concat Filename.dir_sep ["app"; "var"; "o.atom"] in
+  let sep = ": " in
   match load_or_create_feed_file name with
-      Feed  (f) ->
-        begin match f.title with
+    | Feed  (f) ->
+      begin match f.title with
         | Text (t) ->
-            Printf.printf "%s\n" t;
-            0
+          prerr_endline t;
+          0
         | _ -> 
-            let lst = [exe; "das kommt jetzt etwas überraschend."] in
-            let msg = String.concat ": " lst in
-            Printf.eprintf "%s\n" msg;
-            3
-        end
+          let lst = [exe; "das kommt jetzt etwas überraschend."] in
+          let msg = String.concat sep lst in
+          prerr_endline msg;
+          3
+      end
     | Error (e) ->
-        let lst = List.cons exe e in
-        let msg = String.concat ": " lst in
-        Printf.eprintf "%s\n" msg;
-        1
+      let lst = List.cons exe e in
+      let msg = String.concat sep lst in
+      prerr_endline msg;
+      1
  
 let run () =
   let exe = Filename.basename Sys.executable_name in
+  let sep = ": " in
   match Array.length Sys.argv with
     | 1 ->
-        run_argc0 exe
+      run_argc0 exe
     | _ -> 
-        let lst = [exe; "I don't accept commandline parameters"] in
-        let msg = String.concat ": " lst in
-        Printf.eprintf "%s\n" msg;
-        2
+      let lst = [exe; "I don't accept commandline parameters"] in
+      let msg = String.concat sep lst in
+      prerr_endline msg;
+      2
 
