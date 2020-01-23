@@ -5,6 +5,7 @@
 .PHONY: all build clean test install uninstall doc examples
 
 build:
+	@echo "let git_sha = \""`git rev-parse --short HEAD`"\"" > lib/version.ml
 	dune build bin/shaarli_cgi.exe
 
 all: build

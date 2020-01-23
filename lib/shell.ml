@@ -53,6 +53,7 @@ let run_argc0 exe =
       1
  
 let run () =
+  (* prerr_endline Version.git_sha; *)
   let exe = Filename.basename Sys.executable_name in
   let sep = ": " in
   match Array.length Sys.argv with
