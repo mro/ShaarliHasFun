@@ -8,8 +8,7 @@ let getenv_safe ?default s =
   with Not_found ->
     match default with
     | Some d -> d
-    | None ->
-      failwith ("Cgi: the environment variable " ^ s ^ " is not set")
+    | None   -> failwith ("Cgi: the environment variable " ^ s ^ " is not set")
 
 (* https://docs.mirage.io/uri/Uri/ *)
 

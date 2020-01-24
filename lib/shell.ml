@@ -14,18 +14,16 @@ let hello () =
  (* printf "cwd: '%s'\n" Sys.getcwd (); *)
   0
 
-(* TODO: have a closer look at
- * https://v1.realworldocaml.org/v1/en/html/error-handling.html#encoding-errors-with-result
- *)
-type myfe =
-  | Feed  of Syndic.Atom.feed
-  | Error of string list
-
 let load_or_create_feed_file f =
   match Sys.file_exists f with
     | false -> Error [f; "No such file or directory"]
       (* http://cumulus.github.io/Syndic/syndic/Syndic__/Syndic_atom/index.html#val-read *)
-    | true  -> Feed (Syndic.Atom.read f)
+    | true  -> try Ok (Syndic.Atom.read f) with
+      | Not_found -> Error ["read"; f; "not found"]
+      | Syndic__Syndic_error.Error(_,msg) -> Error ["read"; f; msg; "at pos";
+      "?.?"]
+      | e -> let msg = Printexc.to_string e in
+        Error ["read"; f; "exception"; msg]
 
   (* load *)
   (* if fails
@@ -35,7 +33,7 @@ let run_argc0 exe =
   let name = String.concat Filename.dir_sep ["app"; "var"; "o.atom"] in
   let sep = ": " in
   match load_or_create_feed_file name with
-    | Feed  (f) ->
+    | Ok  f ->
       begin match f.title with
         | Text (t) ->
           prerr_endline t;
@@ -46,7 +44,7 @@ let run_argc0 exe =
           prerr_endline msg;
           3
       end
-    | Error (e) ->
+    | Error e ->
       let lst = List.cons exe e in
       let msg = String.concat sep lst in
       prerr_endline msg;

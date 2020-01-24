@@ -28,8 +28,9 @@
 open Lib
 
 let () =
-  let status = match Sys.getenv_opt Cgi.http_request_method with
-      Some _ -> Cgi.run()
+  let status =
+    match Sys.getenv_opt Cgi.http_request_method with
+    | Some _ -> Cgi.run()
     | None   -> Shell.run() in
   exit status;;
 
